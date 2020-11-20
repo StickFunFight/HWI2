@@ -1,1 +1,13 @@
 
+import TI.*;
+public class RobotMain {
+
+    public static void main(String[] args) {
+//ik zie de led branden vanaf 3.
+    PWM pwn = new PWM(10,3);
+        pwn.start();
+        while (true) {
+            BoeBot.wait(500);
+        }
+    }
+}
