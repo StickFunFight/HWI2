@@ -1,0 +1,18 @@
+import TI.*;
+public class RobotMain {
+
+    public static void main(String[] args) {
+
+        Servo Rechts = new Servo(12);
+        Servo Links = new Servo(13);
+        Rechts.update(1499);
+        Links.update(1500);
+//staat de boe bot stil.
+
+        while (true) {
+
+            BoeBot.wait(1000);
+        }
+    }
+}
+
