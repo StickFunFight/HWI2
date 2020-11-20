@@ -1,0 +1,18 @@
+import TI.BoeBot;
+import TI.PinMode;
+
+public class RobotMain {
+
+    public static void main(String[] args) {
+
+        boolean state = true;
+//Zet het lampje 1 seconde aan en 2 seconden uit
+        while (true) {
+            state = !state;
+            BoeBot.digitalWrite(0, true);
+            BoeBot.wait(1000);
+            BoeBot.digitalWrite(0, false);
+            BoeBot.wait(2000);
+        }
+    }
+}
