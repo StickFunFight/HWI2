@@ -1,0 +1,40 @@
+import TI.*;
+public class RobotMain {
+
+    public static void main(String[] args) {
+//geef de pin aan
+        int iLed = 10;
+        //moment dat de led begint met branden
+        int LedBrandVanaf = 3;
+        Boolean bFeller = true;
+
+        PWM pwm = new PWM(iLed, LedBrandVanaf);
+        pwm.start();
+
+        while (true) {
+            bFeller = controlLed(pwm, LedBrandVanaf, bFeller);
+        //spreek de functie aan
+            //als bfeller true is dan telt de int op
+            if (bFeller) {
+                LedBrandVanaf++;
+                //als de led false is dan telt de led af
+            } else {
+                LedBrandVanaf--;
+            }
+
+            BoeBot.wait(8);
+        }
+    }
+
+    private static boolean controlLed(PWM pwm, int LedBrandVanaf, boolean bFeller) {
+        pwm.update(LedBrandVanaf);
+    //update de pwn waarde
+        if (bFeller && LedBrandVanaf == 255) {
+            bFeller = false;
+        } else if (!bFeller && LedBrandVanaf == 3) {
+            bFeller = true;
+        }
+
+        return bFeller;
+    }
+}
