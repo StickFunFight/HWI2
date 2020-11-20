@@ -1,0 +1,54 @@
+import TI.*;
+public class RobotMain {
+
+    public static void main(String[] args) {
+
+        Servo Rechts = new Servo(12);
+        Servo Links = new Servo(13);
+        int Snelheid = 1499;
+        int Snelheid2 = 1500;
+        boolean afremmen = false;
+
+
+        while (true) {
+            //snelheid op laten lopen
+            if (Snelheid > 1400) {
+                Snelheid--;
+                System.out.printf("" + Snelheid);
+            }
+            //snelheid op laten lopen
+            if (Snelheid2 < 1599) {
+                Snelheid2++;
+                System.out.printf("" + Snelheid2);
+            }
+            //mee sturen naar functie
+            gaNaarSnelheid(Rechts, Links, Snelheid, Snelheid2, afremmen);
+            BoeBot.wait(50);
+        }
+    }
+
+    public static void gaNaarSnelheid(Servo Rechts, Servo Links, int Snelheid, int Snelheid2, boolean afremmen) {
+        Rechts.update(Snelheid);
+        Links.update(Snelheid2);
+//update de snelheid
+        if (Snelheid == 1400 && Snelheid2 == 1599) {
+            afremmen=true;
+            draaien(-30, Rechts, Links,Snelheid,Snelheid2);
+        }
+    }
+
+   public static void draaien(int draaiSnelheid,Servo Rechts, Servo Links, int Snelheid, int Snelheid2){
+        if(draaiSnelheid <0){
+        //draai links
+            int Draaihoek = Snelheid - draaiSnelheid;
+            //hoeveelheid van draaisnelheid - de snelheid is de draaihoek
+            System.out.println(Draaihoek);
+            Links.update(Draaihoek);
+        }
+        //draai rechts
+        else if(draaiSnelheid > 0){
+            int Draaihoek = Snelheid2 - draaiSnelheid;
+            Rechts.update(Draaihoek);
+        }
+   }
+}
