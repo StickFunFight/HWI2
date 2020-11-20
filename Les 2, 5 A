@@ -1,1 +1,67 @@
 
+import TI.*;
+public class RobotMain {
+
+    public static void main(String[] args) {
+
+        Servo Rechts = new Servo(12);
+        Servo Links = new Servo(13);
+        int Snelheid = 1499;
+        int Snelheid2 = 1500;
+        boolean afremmen = false;
+
+
+        while (true) {
+            //snelheid op laten lopen
+            if(Snelheid > 1400){
+                Snelheid--;
+                System.out.printf(""+Snelheid);
+            }
+            //snelheid op laten lopen
+            if(Snelheid2 < 1599){
+                Snelheid2++;
+                System.out.printf(""+Snelheid2);
+            }
+            //mee sturen naar functie
+            gaNaarSnelheid(Rechts,Links,Snelheid,Snelheid2,afremmen);
+            BoeBot.wait(50);
+        }
+    }
+   public static void gaNaarSnelheid(Servo Rechts, Servo Links, int Snelheid, int Snelheid2,boolean afremmen)
+    {
+        Rechts.update(Snelheid);
+        Links.update(Snelheid2);
+//update de snelheid
+        if(Snelheid == 1400 && Snelheid2 == 1599){
+            afremmen =true;
+            //kijk of snelheid behaald is zoja afremmen.
+            GaNaarStilStand(Rechts,Links,Snelheid,Snelheid2,afremmen);
+        }else{
+            System.out.println("KOM JE HIER?");
+        }
+
+    }
+
+    public static void GaNaarStilStand(Servo Rechts, Servo Links, int Snelheid, int Snelheid2, boolean afremmen)
+    {
+        //zolang afremmen true is snelheid verminderen
+        while (afremmen){
+            System.out.printf("kom je hier");
+            if(Snelheid < 1499){
+                Snelheid++;
+                System.out.println(Snelheid);
+                Rechts.update(Snelheid);
+            }
+            if(Snelheid2 > 1500){
+                Snelheid2--;
+                System.out.println(Snelheid2);
+               Links.update(Snelheid2);
+            }
+            else if(Snelheid == 1499 && Snelheid2 ==1500){
+                afremmen= false;
+            }
+            BoeBot.wait(50);
+        }
+
+    }
+}
