@@ -1,0 +1,16 @@
+import TI.BoeBot;
+import TI.PinMode;
+
+public class RobotMain {
+
+    public static void main(String[] args) {
+
+        boolean state = true;
+//de led knippert om de 0,01 seconden hierdoor kun je niet zien dat hij nog knipperd
+        while (true) {
+            state = !state;
+            BoeBot.digitalWrite(0, state);
+            BoeBot.wait(10);
+        }
+    }
+}
