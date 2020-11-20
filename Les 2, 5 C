@@ -32,22 +32,27 @@ public class RobotMain {
         Links.update(Snelheid2);
 //update de snelheid
         if (Snelheid == 1400 && Snelheid2 == 1599) {
-            afremmen=true;
-            draaien(-30, Rechts, Links,Snelheid,Snelheid2);
+           // afremmen=true;
+            draaien(-90, Rechts, Links,Snelheid,Snelheid2);
         }
     }
+//    public static void NoodRem(Servo Rechts, Servo Links, boolean afremmen){
+//        while(afremmen){
+//            //zolang afremmen true is word de servo op rust gezet
+//            Rechts.update(1499);
+//            Links.update(1500);
+//        }
+//    }
 
    public static void draaien(int draaiSnelheid,Servo Rechts, Servo Links, int Snelheid, int Snelheid2){
         if(draaiSnelheid <0){
-        //draai links
-            int Draaihoek = Snelheid - draaiSnelheid;
+            int Draaihoek = Snelheid2 + draaiSnelheid;
             //hoeveelheid van draaisnelheid - de snelheid is de draaihoek
             System.out.println(Draaihoek);
             Links.update(Draaihoek);
         }
-        //draai rechts
         else if(draaiSnelheid > 0){
-            int Draaihoek = Snelheid2 - draaiSnelheid;
+            int Draaihoek = Snelheid + draaiSnelheid;
             Rechts.update(Draaihoek);
         }
    }
