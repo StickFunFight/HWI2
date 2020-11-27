@@ -169,14 +169,23 @@ public class RobotMain {
     public static int getNumberRemote(String iBinary) {
         // Switch om de knop te herkennen, -1 als het niet bestaat
         switch (iBinary) {
+            //Naar links voren
             case "000000010000": return links();
+            //recht vooruit
             case "100000010000": return toSpeed(200);
+            //naar rechts voren
             case "010000010000": return Rechts();
+            //draai 90 graden
             case "110000010000": return turnDegrees(90, 30);
+            //STOP
             case "001000010000": return emergencyBrake();
-            case "101000010000": return turnDegrees(-90, 30);;
+            //Draai 90 graden
+            case "101000010000": return turnDegrees(-90, 30);
+            //Naar links achter
             case "011000010000": return AchterLinks();
+            //volle kracht achteruit
             case "111000010000": return toSpeed(-200);
+            //naar rechts achter
             case "000100010000": return AchterRechts();
             case "100100010000": return 0;
             default: return -1;
